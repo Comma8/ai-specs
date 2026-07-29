@@ -2,49 +2,78 @@
 
 This repository defines how I expect to interact with AI systems.
 
-It is not a collection of clever prompts. It is a set of **behavioral contracts, thinking standards, and interaction rules** that govern how models should reason, critique, and collaborate with me.
+It is not a collection of clever prompts. It is a set of **behavioral contracts, thinking standards,
+and interaction rules** that govern how models should reason, critique, and collaborate with me.
 
-Think of this as an alignment layer between how AI systems default to behaving and how I actually want to work.
+Think of this as an alignment layer between how AI systems default to behaving and how I actually
+want to work.
 
 
-## Core Documents
+## The Two Souls
 
-### `soul.md`
+Conversation and agency are different jobs with different failure modes, so they get different
+contracts. Use one or both.
 
-The constitution.
+| File | Governs | Use it in |
+|---|---|---|
+| `chat/soul.md` | Reasoning, honesty, critique, tone | Chat clients, custom instructions, any conversation |
+| `agent/soul.md` | Action: reading and writing files, running commands, changing systems | Coding agents, CLI agents, anything with tools |
 
-This file defines non‑negotiable principles that apply to *all* interactions:
+### `chat/soul.md`
+
+The constitution. Non-negotiable principles that apply to every interaction:
 
 * Honesty over politeness
 * Opinions over hedging
 * Critical thinking over reassurance
 * Momentum over analysis paralysis
+* Human prose over machine tells
 
-If a rule applies everywhere, it belongs in `soul.md`.
+If a rule applies everywhere, it belongs here.
 
+### `agent/soul.md`
+
+The operating contract for agents that take real actions. It assumes `chat/soul.md` and adds what
+agency requires:
+
+* Verified claims over confident recall
+* Whole scope, or an explicit statement of what was skipped
+* Architecture over expedience
+* Confirmation before anything irreversible
+* Secrets never written where they can be read
+* Faithful reporting of what actually happened
+
+A chat model that is wrong wastes a minute. An agent that is wrong deletes something.
 
 
 ## How to Use This Repo
 
-### Starting a New Conversation
+### Chat
 
-At the start of a new AI conversation:
+At the start of a new conversation, or once in your client's custom instructions:
 
-1. Paste the contents of `soul.md`
+1. Paste the contents of `chat/soul.md`
 2. Say something equivalent to:
 
 > "Use `soul.md` as governing interaction rules for this conversation."
 
 This establishes the highest possible instruction priority.
 
+### Agents
 
+Paste both files into the agent's persistent instruction file (`CLAUDE.md`, `AGENTS.md`, a system
+prompt, or the equivalent), `chat/soul.md` first.
+
+`agent/soul.md` is deliberately generic. It holds transferable principles, not project rules.
+Anything specific to a codebase (its libraries, its build gate, its deploy chain) belongs in that
+project's own instruction file, not here. Duplicating a project rule into this repo creates a second
+source of truth, which is the exact drift these documents exist to prevent.
 
 ### Ongoing Conversations
 
-If behavior drifts, a simple reminder is sufficient:
+If behavior drifts, a reminder is sufficient:
 
 > "Operate under soul.md."
-
 
 
 ## What This Repo Is Not
@@ -53,9 +82,9 @@ If behavior drifts, a simple reminder is sufficient:
 * Not a safety framework
 * Not a prompt marketplace
 * Not documentation for end users
+* Not project configuration
 
 This repo exists to improve **thinking quality**, not tone compliance.
-
 
 
 ## Design Principles
@@ -67,7 +96,10 @@ This repo exists to improve **thinking quality**, not tone compliance.
 * Explicit uncertainty over confident guessing
 
 
+## Credits
 
+The slop bans in both souls distill [stop-slop](https://github.com/hardikpandya/stop-slop) by
+Hardik Pandya (MIT).
 
 
 ## Guiding Question
@@ -76,5 +108,4 @@ At every step, the goal is simple:
 
 > Does this interaction make my thinking sharper, faster, or more honest?
 
-If not, it’s noise.
-
+If not, it is noise.
