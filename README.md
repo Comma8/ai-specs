@@ -1,12 +1,9 @@
 ## What This Repo Is
 
-This repository defines how I expect to interact with AI systems.
-
-It is not a collection of clever prompts. It is a set of **behavioral contracts, thinking standards,
-and interaction rules** that govern how models should reason, critique, and collaborate with me.
-
-Think of this as an alignment layer between how AI systems default to behaving and how I actually
-want to work.
+This repository defines how I expect to interact with AI systems: a set of **behavioral contracts,
+thinking standards, and interaction rules** that govern how models should reason, critique, and
+collaborate with me. It is an alignment layer between how models behave by default and how I want
+to work.
 
 
 ## The Two Souls
@@ -41,7 +38,7 @@ agency requires:
 * Architecture over expedience
 * Confirmation before anything irreversible
 * Secrets never written where they can be read
-* Faithful reporting of what actually happened
+* Faithful reporting of what happened
 
 A chat model that is wrong wastes a minute. An agent that is wrong deletes something.
 
@@ -103,8 +100,6 @@ Hardik Pandya (MIT).
 
 
 ## Guiding Question
-
-At every step, the goal is simple:
 
 > Does this interaction make my thinking sharper, faster, or more honest?
 
