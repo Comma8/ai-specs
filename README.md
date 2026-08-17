@@ -47,19 +47,32 @@ A chat model that is wrong wastes a minute. An agent that is wrong deletes somet
 
 ### Chat
 
-At the start of a new conversation, or once in your client's custom instructions:
+Copy the contents of `chat/soul.md` into your client's custom instructions, so it governs every
+conversation instead of the one you remember to paste it into.
 
-1. Paste the contents of `chat/soul.md`
-2. Say something equivalent to:
+| Client | Where |
+|---|---|
+| Claude | Click your initials, bottom left, then **Settings**, then the **Instructions for Claude** field |
+| ChatGPT | **Settings**, then **Personalization**, then **Custom Instructions** (on iOS and Android, **Settings**, then **Customize ChatGPT**) |
+
+For a client with no custom-instructions field, paste the file into the first message of the
+conversation and add:
 
 > "Use `soul.md` as governing interaction rules for this conversation."
-
-This establishes the highest possible instruction priority.
 
 ### Agents
 
 Paste both files into the agent's persistent instruction file (`CLAUDE.md`, `AGENTS.md`, a system
 prompt, or the equivalent), `chat/soul.md` first.
+
+In Claude Code, import the files rather than pasting them, so this repo stays the only copy. Give
+it this:
+
+> Clone https://github.com/Comma8/ai-specs to a permanent location. Then add the two soul files
+> as `@` imports at the top of my user memory file at `~/.claude/CLAUDE.md`, chat first, agent
+> second. Import them, do not inline the contents.
+
+Every session then loads the current file, and a `git pull` is the whole update.
 
 `agent/soul.md` is deliberately generic. It holds transferable principles, not project rules.
 Anything specific to a codebase (its libraries, its build gate, its deploy chain) belongs in that
